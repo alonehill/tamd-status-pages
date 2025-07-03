@@ -33,8 +33,13 @@ Tamd Status Pages 是一套精心设计的网站状态页面模板集合，包�
 ## 🚀 快速上手
 
 1. 克隆仓库：
+   国外
 ```bash
 git clone https://github.com/alonehill/tamd-status-pages.git
+```
+   国内
+```bash
+git clone https://gitee.com/alonehill/tamd-status-pages.git
 ```
 
 2. 将需要的HTML文件复制到你的项目
