@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--
+        =================================================
+        * 页面名称: 操作成功页模板
+        * 文件路径: success.html
+        * 作者: 孤山寺北
+        * 邮箱: 3150675236@qq.com
+        * 网站: https://www.gsav.cn
+        * 创建日期: 2025-7-3
+        * 最后更新: 2025-7-3
+        * 版本: v1.0.0
+        * 版权声明: Copyright (c) 2025 GSAV.CN . 保留所有权利。
+        * 许可证: MIT License
+        * 描述: 操作成功页模板
+        =================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作成功</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --success: #10b981;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --radius: 8px;
+            --space: 24px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: var(--space);
+        }
+
+        .success-container {
+            max-width: 480px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            opacity: 0;
+            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .success-icon-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--success);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .success-icon-inner {
+            width: 60%;
+            height: 60%;
+            background-color: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.2s forwards;
+        }
+
+        .success-message {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: var(--space);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.3s forwards;
+        }
+
+        .success-details {
+            background-color: #f9fafb;
+            padding: 16px;
+            border-radius: var(--radius);
+            margin-bottom: var(--space);
+            font-size: 0.875rem;
+            text-align: left;
+            color: var(--text-light);
+            border: 1px solid var(--border);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.4s forwards;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.5s forwards;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: #f9fafb;
+        }
+        
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">
+            <div class="success-icon-circle"></div>
+            <div class="success-icon-inner">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+        </div>
+        
+        <h1 id="successTitle">操作成功</h1>
+        <p class="success-message" id="successMessage"></p>
+        
+        <div class="success-details" id="successDetails">
+            <!-- 动态内容将通过js填充 -->
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-primary" id="nextStepBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+                继续下一步
+            </button>
+            <button class="btn btn-secondary" id="closeBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                关闭
+            </button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; <span id="year"></span> 孤山寺北</p>
+    </footer>
+    
+    <script>        
+        // 自动更新版权年份
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.addEventListener('DOMContentLoaded', function() {
+            // 从URL获取成功信息
+            const urlParams = new URLSearchParams(window.location.search);
+            const title = urlParams.get('title') || '操作成功';
+            const message = urlParams.get('message') || '您的请求已成功处理';
+            const details = urlParams.get('details') || '没有其他详细信息';
+            
+            document.getElementById('successTitle').textContent = title;
+            document.getElementById('successMessage').textContent = message;
+            document.getElementById('successDetails').textContent = details;
+            
+            // 自动关闭倒计时
+            let countdown = 8;
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = urlParams.get('redirect') || '/';
+                }
+            }, 1000);
+            
+            // 按钮事件
+            document.getElementById('nextStepBtn').addEventListener('click', function() {
+                clearInterval(countdownInterval);
+                window.location.href = urlParams.get('next') || '/next-step';
+            });
+            
+            document.getElementById('closeBtn').addEventListener('click', function() {
+                clearInterval(countdownInterval);
+                window.location.href = urlParams.get('redirect') || '/';
+            });
+        });
+    </script>
+</body>
+</html>

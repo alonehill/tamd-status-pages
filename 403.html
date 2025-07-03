@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--
+    =================================================
+      * 页面名称: 403访问限制模板
+      * 文件路径: 403.html
+      * 作者: 孤山寺北
+      * 邮箱: 3150675236@qq.com
+      * 网站: https://www.gsav.cn
+      * 创建日期: 2025-7-3
+      * 最后更新: 2025-7-3
+      * 版本: v1.0.0
+      * 版权声明: Copyright (c) 2025 GSAV.CN . 保留所有权利。
+      * 许可证: MIT License
+      * 描述: 优雅的403访问受限页模板
+      =================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>访问受限</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --warning: #f97316;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --radius: 8px;
+            --space: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .status-icon-circle {
+            border-color: var(--warning);
+        }
+
+        .status-icon-inner {
+            background-color: var(--warning);
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: var(--space);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.4s forwards;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-container">
+        <div class="status-icon">
+            <div class="status-icon-circle"></div>
+            <div class="status-icon-inner">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+            </div>
+        </div>
+        
+        <h1>访问受限</h1>
+        <p class="status-message">您没有权限查看此内容</p>
+        
+        <div class="action-buttons">
+            <button class="btn btn-primary" id="requestAccessBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                申请权限
+            </button>
+            <button class="btn btn-secondary" id="contactAdminBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                联系管理员
+            </button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; <span id="year"></span> 孤山寺北 · <a href="/help" style="color: var(--primary); text-decoration: none;">权限说明</a></p>
+    </footer>
+
+    <script>
+        // 自动更新版权年份
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('requestAccessBtn').addEventListener('click', function() {
+                window.location.href = '/request-access?resource=' + encodeURIComponent(window.location.pathname);
+            });
+            
+            document.getElementById('contactAdminBtn').addEventListener('click', function() {
+                window.location.href = 'mailto:admin@example.com?subject=权限申请&body=请说明您需要访问的资源及原因';
+            });
+        });
+    </script>
+</body>
+</html>

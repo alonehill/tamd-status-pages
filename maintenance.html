@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--
+        =================================================
+        * 页面名称: 系统维护页模板
+        * 文件路径: maintenance.html
+        * 作者: 孤山寺北
+        * 邮箱: 3150675236@qq.com
+        * 网站: https://www.gsav.cn
+        * 创建日期: 2025-7-3
+        * 最后更新: 2025-7-3
+        * 版本: v1.0.0
+        * 版权声明: Copyright (c) 2025 GSAV.CN . 保留所有权利。
+        * 许可证: MIT License
+        * 描述: 系统维护页模板
+        =================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统维护中</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --radius: 8px;
+            --space: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: var(--space);
+        }
+
+        .status-container {
+            max-width: 480px;
+            margin: auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .status-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .status-icon-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #6b7280;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .status-icon-inner {
+            width: 60%;
+            height: 60%;
+            background-color: #6b7280;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transform: scale(0);
+            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.2s forwards;
+        }
+
+        .status-message {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: var(--space);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.3s forwards;
+        }
+
+        .countdown {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: var(--space);
+            padding: 12px;
+            background-color: #f9fafb;
+            border-radius: var(--radius);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.4s forwards;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: #e5e7eb;
+            border-radius: 3px;
+            margin-bottom: var(--space);
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.5s forwards;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #3b82f6;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding-top: var(--space);
+            font-size: 0.8125rem;
+            color: var(--text-light);
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.6s forwards;
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --space: 16px;
+            }
+            
+            .status-icon {
+                width: 64px;
+                height: 64px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="status-container">
+        <div class="status-icon">
+            <div class="status-icon-circle"></div>
+            <div class="status-icon-inner">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <h1>系统维护中</h1>
+        <p class="status-message">我们正在进行计划性维护，服务将于 <strong id="restoreTime">今日 18:00</strong> 恢复</p>
+        
+        <div class="countdown" id="maintenanceCountdown">剩余时间: 计算中...</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; <span id="year"></span> 孤山寺北 · <a href="mailto:support@example.com" style="color: var(--primary); text-decoration: none;">紧急联系</a></p>
+    </footer>
+
+    <script>
+        // 自动更新版权年份
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.addEventListener('DOMContentLoaded', function() {
+            // 设置维护结束时间 当前时间+2小时，这里只能在打开页面时开始倒计时，具体时间需要后端api
+            const endTime = new Date();
+            endTime.setHours(endTime.getHours() + 2);
+            
+            // 更新恢复时间显示
+            document.getElementById('restoreTime').textContent = 
+                `今日 ${endTime.getHours()}:${String(endTime.getMinutes()).padStart(2, '0')}`;
+            
+            // 倒计时更新
+            function updateCountdown() {
+                const now = new Date();
+                const diff = endTime - now;
+                
+                if (diff <= 0) {
+                    document.getElementById('maintenanceCountdown').textContent = '维护已完成';
+                    document.getElementById('progressBar').style.width = '100%';
+                    return;
+                }
+                
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('maintenanceCountdown').textContent = 
+                    `剩余时间: ${hours}小时 ${minutes}分 ${seconds}秒`;
+                
+                // 更新进度条 示例2小时 仅写了打开页面开始的两小时 具体时间后端api来整
+                const totalTime = 2 * 60 * 60 * 1000;
+                const progress = ((totalTime - diff) / totalTime) * 100;
+                document.getElementById('progressBar').style.width = `${progress}%`;
+                
+                setTimeout(updateCountdown, 1000);
+            }
+            
+            updateCountdown();
+        });
+    </script>
+</body>
+</html>

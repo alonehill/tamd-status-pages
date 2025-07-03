@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--
+        =================================================
+        * 页面名称: 无内容模板
+        * 文件路径: empty-state.html
+        * 作者: 孤山寺北
+        * 邮箱: 3150675236@qq.com
+        * 网站: https://www.gsav.cn
+        * 创建日期: 2025-7-3
+        * 最后更新: 2025-7-3
+        * 版本: v1.0.0
+        * 版权声明: Copyright (c) 2025 GSAV.CN . 保留所有权利。
+        * 许可证: MIT License
+        * 描述: 当前页面无内容，提示模板                            
+        =================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暂无内容</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --radius: 8px;
+            --space: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: var(--space);
+        }
+
+        .empty-state {
+            max-width: 480px;
+            margin: auto;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .empty-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.2s forwards;
+        }
+
+        .empty-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke-width: 1.5;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.3s forwards;
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: var(--space);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.4s forwards;
+        }
+
+        .create-btn {
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            background-color: var(--primary);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.5s forwards;
+        }
+
+        .create-btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .suggestions {
+            margin-top: var(--space);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.6s forwards;
+        }
+
+        .suggestions a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: all 0.2s ease;
+        }
+
+        .suggestions a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="empty-state">
+        <div class="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+        </div>
+        
+        <h3>暂无数据</h3>
+        <p>当前没有可显示的内容</p>
+        
+        <button class="create-btn" id="createNewBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            创建新内容
+        </button>
+        
+        <div class="suggestions">
+            <span style="color: var(--text-light); font-size: 0.875rem;">或者尝试:</span>
+            <a href="/templates">使用模板创建</a>
+            <a href="/import">导入现有内容</a>
+            <a href="/learn">查看教程指南</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('createNewBtn').addEventListener('click', function() {
+                window.location.href = '/create';
+            });
+        });
+    </script>
+</body>
+</html>

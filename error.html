@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--
+        =================================================
+        * 页面名称: 错误模板
+        * 文件路径: error.html
+        * 作者: 孤山寺北
+        * 邮箱: 3150675236@qq.com
+        * 网站: https://www.gsav.cn
+        * 创建日期: 2025-7-3
+        * 最后更新: 2025-7-3
+        * 版本: v1.0.0
+        * 版权声明: Copyright (c) 2025 GSAV.CN . 保留所有权利。
+        * 许可证: MIT License
+        * 描述: 页面错误模板                            
+        =================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面错误</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --error: #ef4444;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --radius: 8px;
+            --space: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: var(--space);
+        }
+
+        .error-container {
+            max-width: 480px;
+            margin: auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .error-icon-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--error);
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .error-icon-inner {
+            width: 60%;
+            height: 60%;
+            background-color: var(--error);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 24px;
+            transform: scale(0);
+            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.2s forwards;
+        }
+
+        .error-message {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: var(--space);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.3s forwards;
+        }
+
+        .error-details {
+            background-color: #f9fafb;
+            padding: 16px;
+            border-radius: var(--radius);
+            margin-bottom: var(--space);
+            font-family: 'Menlo', 'Consolas', monospace;
+            font-size: 0.8125rem;
+            text-align: left;
+            color: var(--text-light);
+            max-height: 200px;
+            overflow-y: auto;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.4s forwards;
+            border: 1px solid var(--border);
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.5s forwards;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: #f9fafb;
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding-top: var(--space);
+            font-size: 0.8125rem;
+            color: var(--text-light);
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.6s forwards;
+        }
+
+        .footer-link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --space: 16px;
+            }
+            
+            .error-icon {
+                width: 64px;
+                height: 64px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">
+            <div class="error-icon-circle"></div>
+            <div class="error-icon-inner">!</div>
+        </div>
+        
+        <h1>遇到了一些问题</h1>
+        <p class="error-message">我们无法完成您的请求，请稍后再试或联系支持团队。</p>
+        
+        <div class="error-details" id="errorDetails">
+            <pre id="errorDetailsContent"></pre>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-primary" id="reloadBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.5 2v6h-6M2.5 22v-6h6M22 12.5a10 10 0 0 1-17.2 6.8M2 11.5a10 10 0 0 1 17.2-6.8"/>
+                </svg>
+                重新加载
+            </button>
+            <button class="btn btn-secondary" id="homeBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                返回首页
+            </button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; <span id="year"></span> 孤山寺北 · <a href="#" class="footer-link">获取帮助</a></p>
+    </footer>
+
+    <script>
+        // 自动更新版权年份
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取URL中的错误信息
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorMessage = urlParams.get('message') || '未知错误';
+            const errorDetails = urlParams.get('details') || '没有提供更多细节';
+            
+            // 显示错误详情
+            document.getElementById('errorDetailsContent').textContent = 
+                `错误信息: ${errorMessage}\n\n详细信息: ${errorDetails}`;
+            
+            // 按钮事件
+            document.getElementById('reloadBtn').addEventListener('click', function() {
+                window.location.reload();
+            });
+            
+            document.getElementById('homeBtn').addEventListener('click', function() {
+                window.location.href = '/';
+            });
+            
+            // 如果是生产环境，默认隐藏错误详情
+            if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                document.getElementById('errorDetails').style.display = 'none';
+                
+                const toggleBtn = document.createElement('button');
+                toggleBtn.className = 'btn btn-secondary';
+                toggleBtn.style.marginBottom = 'var(--space)';
+                toggleBtn.innerHTML = '显示技术细节';
+                toggleBtn.addEventListener('click', function() {
+                    const details = document.getElementById('errorDetails');
+                    if (details.style.display === 'none') {
+                        details.style.display = 'block';
+                        toggleBtn.innerHTML = '隐藏技术细节';
+                    } else {
+                        details.style.display = 'none';
+                        toggleBtn.innerHTML = '显示技术细节';
+                    }
+                });
+                
+                document.querySelector('.error-message').after(toggleBtn);
+            }
+        });
+    </script>
+</body>
+</html>

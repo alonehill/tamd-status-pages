@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--
+        =================================================
+        * 页面名称: 没有找到搜索内容页模板
+        * 文件路径: no-results.html
+        * 作者: 孤山寺北
+        * 邮箱: 3150675236@qq.com
+        * 网站: https://www.gsav.cn
+        * 创建日期: 2025-7-3
+        * 最后更新: 2025-7-3
+        * 版本: v1.0.0
+        * 版权声明: Copyright (c) 2025 GSAV.CN . 保留所有权利。
+        * 许可证: MIT License
+        * 描述: 没有找到搜索内容页模板
+        =================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无搜索结果</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --radius: 8px;
+            --space: 24px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: var(--space);
+        }
+
+        .search-container {
+            max-width: 480px;
+            margin: auto;
+            width: 100%;
+        }
+
+        .search-box {
+            display: flex;
+            margin-bottom: var(--space);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius) 0 0 var(--radius);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-btn {
+            padding: 0 16px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .search-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .no-results {
+            text-align: center;
+            margin-top: var(--space);
+        }
+
+        .no-results-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space);
+            color: var(--text-light);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.2s forwards;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.3s forwards;
+        }
+
+        .no-results p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: var(--space);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.4s forwards;
+        }
+
+        .suggestions {
+            margin-top: var(--space);
+            text-align: left;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out 0.5s forwards;
+        }
+
+        .suggestions h4 {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .suggestion-item {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .suggestion-item:hover {
+            border-color: var(--primary);
+            background-color: #f8fafc;
+        }
+
+        .suggestion-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .suggestion-desc {
+            font-size: 0.8125rem;
+            color: var(--text-light);
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <form class="search-box" id="searchForm">
+            <input type="text" class="search-input" id="searchInput" placeholder="搜索..." value="">
+            <button type="submit" class="search-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </form>
+        
+        <div class="no-results">
+            <div class="no-results-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="11" y1="8" x2="11" y2="11"></line>
+                    <line x1="11" y1="14" x2="11.01" y2="14"></line>
+                </svg>
+            </div>
+            
+            <h3>没有找到匹配结果</h3>
+            <p>尝试其他关键词或以下建议：</p>
+            
+            <div class="suggestions">
+                <h4>热门搜索</h4>
+                <div class="suggestion-item" onclick="document.getElementById('searchInput').value = '用户指南'; document.getElementById('searchForm').submit();">
+                    <div class="suggestion-title">用户指南</div>
+                    <div class="suggestion-desc">查看完整的使用文档</div>
+                </div>
+                <div class="suggestion-item" onclick="document.getElementById('searchInput').value = '常见问题'; document.getElementById('searchForm').submit();">
+                    <div class="suggestion-title">常见问题</div>
+                    <div class="suggestion-desc">解决常见的使用问题</div>
+                </div>
+                <div class="suggestion-item" onclick="location.href='/categories'">
+                    <div class="suggestion-title">浏览分类</div>
+                    <div class="suggestion-desc">按分类查看所有内容</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 从URL获取搜索词
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('q') || '';
+            document.getElementById('searchInput').value = searchQuery;
+            
+            // 表单提交
+            document.getElementById('searchForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = document.getElementById('searchInput').value.trim();
+                if (query) {
+                    window.location.href = `/search?q=${encodeURIComponent(query)}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
